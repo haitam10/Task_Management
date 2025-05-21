@@ -173,7 +173,7 @@ export default function TaskList() {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                {(user?.role === "admin" || task.assignedTo === user?.id) && (
+                {(user?.role === "admin" || user?.role === "user") && (
                   <Button
                     variant="outline"
                     size="icon"
@@ -197,7 +197,7 @@ export default function TaskList() {
                   </Button>
                 )}
 
-                {(user?.role === "admin" || task.assignedTo === user?.id) && (
+                {(user?.role === "admin" || user?.role === "user") && (
                   <Button
                     onClick={() => handleToggleStatus(task)}
                     className={`${

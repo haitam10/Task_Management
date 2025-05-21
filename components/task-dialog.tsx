@@ -27,7 +27,7 @@ interface TaskDialogProps {
   task: Task | null
   onSave: (task: Omit<Task, "id">) => void
   isAdmin: boolean
-  users: { id: string; username: string }[]
+  users: { id: string; username: string; role: string }[]
 }
 
 export default function TaskDialog({
@@ -114,9 +114,11 @@ export default function TaskDialog({
                     <SelectValue placeholder="Assign to" />
                   </SelectTrigger>
                   <SelectContent>
-                    {users.map((user) => (
+                    {users
+                    .filter((user) => user.role === "user")
+                    .map((user) => (
                       <SelectItem key={user.id} value={user.username}>
-                        {user.username}
+                       {user.username}
                       </SelectItem>
                     ))}
                   </SelectContent>
